@@ -1,5 +1,4 @@
-/// <reference path="circle.ts"/>
-/// <reference path="cross.ts"/>
+/// <reference path="shapes.ts"/>
 /// <reference path="tile.ts"/>
 
 class Game {
