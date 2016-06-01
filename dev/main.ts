@@ -2,21 +2,23 @@
 
 window.addEventListener("load", function() {    
     
-    let div: HTMLElement = document.createElement("div");
-    div.setAttribute ("class", "start");
-    document.body.appendChild(div); 
+    new Game();
     
-    let link: HTMLElement = document.createElement("div");
-    link.setAttribute("class", "link");
-    link.innerHTML = "START";
-    div.appendChild(link)
+    // let div: HTMLElement = document.createElement("div");
+    // div.setAttribute ("class", "start");
+    // document.body.appendChild(div); 
     
-    link.addEventListener('click', startGame);    
+    // let link: HTMLElement = document.createElement("div");
+    // link.setAttribute("class", "link");
+    // link.innerHTML = "START";
+    // div.appendChild(link)
+    
+    // link.addEventListener('click', startGame);    
     
     function startGame() {
          new Game();
-         div.remove();
-         link.remove();
+        //  div.remove();
+        //  link.remove();
     }
    
 });
