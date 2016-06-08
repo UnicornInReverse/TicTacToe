@@ -1,24 +1,36 @@
 /// <reference path="game.ts"/> 
+/// <reference path="score.ts" />
+/// <reference path="../typings/howler.d.ts" />
+
+
 
 window.addEventListener("load", function() {    
+
+      
+    let div: HTMLElement = document.createElement("div");
+    div.setAttribute ("class", "start");
+    document.body.appendChild(div); 
     
-    new Game();
+    let link: HTMLElement = document.createElement("div");
+    link.setAttribute("class", "link");
+    link.innerHTML = "Start!";
+    div.appendChild(link)
     
-    // let div: HTMLElement = document.createElement("div");
-    // div.setAttribute ("class", "start");
-    // document.body.appendChild(div); 
-    
-    // let link: HTMLElement = document.createElement("div");
-    // link.setAttribute("class", "link");
-    // link.innerHTML = "START";
-    // div.appendChild(link)
-    
-    // link.addEventListener('click', startGame);    
+    link.addEventListener('click', startGame);
+
     
     function startGame() {
-         new Game();
-        //  div.remove();
-        //  link.remove();
+
+        var sound = new Howl({
+        urls: ['sounds/explosion.wav'],
+        volume: 1.0,
+        autoplay: true
+    }).play;
+
+         var score: Score = new Score();
+         new Game(score);
+         div.remove();
+         link.remove();
     }
    
 });
