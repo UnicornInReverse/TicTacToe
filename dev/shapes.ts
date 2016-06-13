@@ -1,4 +1,4 @@
-class Shapes {
+abstract class Shapes {
     
     protected name: string;
     protected soundfile: string;   
@@ -7,11 +7,11 @@ class Shapes {
         
     }
 
-    public getImage() {
+    public getImage(): HTMLElement {
         return this.createImage(); 
     }
 
-    private createImage() {
+    private createImage(): HTMLElement {
         let image = document.createElement(this.name);
         return image;
 

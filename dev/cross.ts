@@ -1,6 +1,5 @@
 /// <reference path="shapes.ts" />
 
-
 class Cross extends Shapes {
     constructor() {
         super();

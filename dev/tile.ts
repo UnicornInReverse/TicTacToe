@@ -22,12 +22,19 @@ class Tile {
     private button: HTMLElement;
     private score: Score;
     private turn: HTMLElement;   
+    private cross: Shapes; 
+    private circle: Shapes; 
+
 
     constructor(score: Score) {
+
+        this.cross = new Cross;
+        this.circle = new Circle;   
+
         this.score = score;
         this.turn = document.createElement('div');
         this.turn.setAttribute('class', 'turn');
-        this.turn.innerHTML = "<cross></cross>";
+        this.turn.appendChild(this.cross.getImage());
         document.body.appendChild(this.turn);
         
         
@@ -59,51 +66,44 @@ class Tile {
 
     }
 
-    public clickHandler (e) {
-        
-        
-        let cross = new Cross;
-        var circle = new Circle;   
-
-        
+    private clickHandler (e) {        
         if(e.target.className != "unclicked") {
             console.log("Full"); 
-              
         }
         
         else {
             
             if (this.status) {
-                this.turn.innerHTML = "<cross></cross>";
+                this.turn.innerHTML = "";
+                this.turn.appendChild(this.cross.getImage());
                 
-                var circleImg = circle.getImage();
-                e.target.appendChild(circleImg);
+                e.target.appendChild(this.circle.getImage());
                 e.target.setAttribute("class", "clickedO");
                 this.status = false;
 
-                circle.playSound();
+                this.circle.playSound();
                 
                                 
             } else {
-                this.turn.innerHTML = "<circle></circle>";
+                this.turn.innerHTML = "";                
+                this.turn.appendChild(this.circle.getImage());
 
-                var crossImg = cross.getImage();
-                e.target.appendChild(crossImg);
+                e.target.appendChild(this.cross.getImage());
                 e.target.setAttribute("class", "clickedX");
                 this.status = true;
                 
-                cross.playSound();   
+                this.cross.playSound();   
                 
             }
             
             this.counter ++;
                            
-        this.tileCollection();
+        this.tileInit();
             
         }
     }
     
-    private tileCollection(): void {
+    private tileInit(): void {
     
     this.tile1 = document.getElementById("0_0");
     this.tile2 = document.getElementById("0_1");
@@ -191,7 +191,7 @@ class Tile {
         }
     }
     
-    public endScreen(winner):void {
+    private endScreen(winner):void {
         this.div = document.createElement("div");
         this.div.setAttribute ("class", "background")
         document.body.appendChild(this.div);
@@ -204,14 +204,16 @@ class Tile {
         }
         
         else {
-            this.link.innerHTML = winner + " wins!";
+            // this.link.innerHTML =" wins!";
             
             if (winner == "X") {
                 this.score.player1 += 1;
+                this.link.innerHTML = "Guitar wins!               "
             }
             
             else {
                 this.score.player2 += 1;
+                this.link.innerHTML = "Drums win!  "
             }
         
         }

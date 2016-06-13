@@ -2,8 +2,6 @@
 /// <reference path="score.ts" />
 /// <reference path="../typings/howler.d.ts" />
 
-
-
 window.addEventListener("load", function() {    
 
       
